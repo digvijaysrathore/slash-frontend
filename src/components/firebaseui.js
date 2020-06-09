@@ -136,7 +136,10 @@ class SignInScreen extends React.Component {
           <div>
           <p>➕ UPVOTEs - <span className="font-weight-bold">{this.state.userdata.upvote}</span></p>
           <TextArea rows="4" id="bio" name="bio" placeholder="Your bio" onChange={this.bioChange}/>
+          <Input id="bio" className="mt-3" placeholder="Your instagram username, ex. @digvijaysrathore"/>
+          <div className="mt-3">
           <a onClick={this.bioSubmit}>✅</a> <a onClick={this.bioCancelled}> ❌</a>
+          </div>
           </div>
           }
         </div>

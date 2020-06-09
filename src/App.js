@@ -10,6 +10,7 @@ import {API} from "./backend";
 import { Spin } from 'antd';
 import Write from './views/write';
 import Doc from './views/doc';
+import User from './views/user';
 
 const config = {
   apiKey: process.env.REACT_APP_APIKEY,
@@ -38,7 +39,8 @@ class App extends Component {
         this.setState({
           userkey: firebase.auth().currentUser.uid,
           email: firebase.auth().currentUser.email,
-          name: firebase.auth().currentUser.displayName
+          name: firebase.auth().currentUser.displayName,
+          image: firebase.auth().currentUser.photoURL
         })
         axios.post(`${API}/adduser`, this.state)
         .then((response) => {
@@ -60,6 +62,7 @@ class App extends Component {
           <Route user={this.state.user} path="/" exact component={Main} />
           <Route path="/write" component={Write} />
           <Route path="/doc/:doc" component={Doc} />
+          <Route path="/dev/:email" component={User} />
         </BrowserRouter>
       </div>
       :

@@ -190,3 +190,21 @@
     padding-top: 8px;
     padding-bottom: 8px;
 }
+
+.user-image {
+    width: 300px;
+    border-radius: 10px;
+}
+
+.user-row {
+    margin: 20px;
+}
+
+.user-name {
+    text-transform: uppercase;
+    font-family: 'Archivo Black', sans-serif;
+}
+
+.user-content {
+    font-family: 'Source Code Pro', monospace;
+}

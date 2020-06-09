@@ -120,7 +120,7 @@ class Main extends Component {
                         {this.state.devs.slice(0, 8).map((item, index) => {
                             return (
                                 <div className="pt-2" style={{listStyleType: "none"}}> 
-                                <li className="font-weight-bold">{item.name}</li> 
+                                <NavLink to={"/dev/" + item.email}><p className="font-weight-bold text-dark">{item.name}</p> </NavLink>
                                 </div>
                             )
                         })} 
