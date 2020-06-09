@@ -12,7 +12,8 @@ class Main extends Component {
         this.state = {
             currentUser: "",
             user: "",
-            docs: []
+            docs: [],
+            devs: []
         }
     }
 
@@ -25,6 +26,16 @@ class Main extends Component {
             console.log(response.data)
             this.setState({
                 docs: response.data
+            })
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+
+        axios.post(`${API}/getalluser`)
+        .then((response) => {
+            this.setState({
+                devs: response.data
             })
         })
         .catch((err) => {
@@ -83,20 +94,29 @@ class Main extends Component {
                             <li>🎙️ Podcast</li>                 
                         </div>
                     </div>
-                    <div className="column left">
+                    <div className="column center">
                     <h2 className="posts">POSTS</h2>
                     {this.state.docs.map((item, index) => {
                         return (
                             <div className="">
                                 <img src={item.image} width="200" className="pt-3" alt="" />
                                 <h5>{item.title}</h5>
-                                <p><NavLink to={"/doc/" + item.dockey}>🔖 READ</NavLink></p>
-                                {/* <p><a className="font-weight-bold" onClick={() => this.readMore(item.dockey)}>🔖 Read</a></p> */}
+                                <p className="font-weight-bold"><NavLink className="text-dark" to={"/doc/" + item.dockey}>🔖 READ</NavLink></p>
                                 <p><a className="font-weight-bold" onClick={() => this.upvoteUser(item)}>💚 UPVOTE</a></p>
                                 <p>{item.developer}</p>
                             </div>
                         )
                     })}
+                    </div>
+                    <div className="column left">
+                        <h2 className="posts">DEVS</h2>
+                        {this.state.devs.map((item, index) => {
+                            return (
+                                <div className="pt-2" style={{listStyleType: "none"}}> 
+                                <li className="font-weight-bold">{item.name}</li> 
+                                </div>
+                            )
+                            })}          
                     </div>
                 </div>
             </div>
