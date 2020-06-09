@@ -3,6 +3,9 @@ import axios from "axios";
 import { API } from "../backend";
 import { NavLink } from "react-router-dom";
 import firebase from "firebase";
+import { Spin } from "antd";
+import Body from "../components/body";
+const ReactMarkdown = require('react-markdown');
 
 class Doc extends Component {
     constructor(props){
@@ -12,17 +15,26 @@ class Doc extends Component {
             doc: [],
             comments: [],
             comment: "",
-            name: ""
+            name: "",
+            processing: false,
+            commenting: false,
+            fetched: false
         }
     }
 
     componentDidMount = () => {
+        this.setState({
+            processing: true
+        })
         axios.post(`${API}/docbyid`, {
             dockey: this.props.match.params.doc
         })
         .then((response) => {
             this.setState({
-                doc: response.data
+                doc: response.data,
+                comments: response.data.comments,
+                processing: false,
+                fetched: true
             })
         })
         .catch((err) => {
@@ -38,6 +50,9 @@ class Doc extends Component {
     }
 
     onComment = (e) => {
+        this.setState({
+            commenting: true
+        })
         e.preventDefault()
         axios.put(`${API}/comment`, {
             dockey: this.props.match.params.doc,
@@ -46,24 +61,31 @@ class Doc extends Component {
                 name: this.state.name
             }]
         })
+        .then((response) => {
+            this.setState({
+                commenting: false
+            })
+        })
     }
 
     render() {
         return (
             <div className="doc">
                 <NavLink to="/"><p>⬅️ BROWSE</p></NavLink>
+                {this.state.processing ? <Spin /> : <div></div>}
                 <h1 className="doc-title">{this.state.doc.title}</h1>
                 <h5>{this.state.doc.developer}</h5>
                 <div className="text-center">
                     <img src={this.state.doc.image} className="doc-image" alt="" />
                 </div>
-                <p>{this.state.doc.body}</p>
-                <h2 className="posts">COMMENTS</h2>
+                {this.state.fetched ? <Body text={this.state.doc.body}/> : <div></div>}
+                <h2 className="posts pt-4">COMMENTS</h2>
                 <form onSubmit={this.onComment}>
-                    <input id="comment" onChange={this.onCommentChange} type="text" placeholder="Your comment goes here!"/>
-                    <button type="submit">POST</button>
+                    <input id="comment" className="comment-input" onChange={this.onCommentChange} type="text" placeholder="Your comment goes here!"/>
+                    <button className="comment-btn" type="submit">POST</button>
+                    {this.state.commenting ? <Spin /> : <div></div>}
                 </form>
-                <div className="pt-3">
+                <div className="pt-4">
                     {this.state.comments.map((item, index) => {
                         return (
                             <div>

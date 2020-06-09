@@ -3,8 +3,8 @@ import "../styles/main.css";
 import firebase from "firebase";
 import axios from "axios";
 import { API } from "../backend";
-import { NavLink, Redirect } from "react-router-dom";
-import {message} from "antd";
+import { NavLink } from "react-router-dom";
+import {message, Spin} from "antd";
 
 class Main extends Component {
     constructor(props){
@@ -13,19 +13,23 @@ class Main extends Component {
             currentUser: "",
             user: "",
             docs: [],
-            devs: []
+            devs: [],
+            yourdocs: [],
+            processing: false
         }
     }
 
     componentDidMount = () => {
         this.setState({
-            currentUser: firebase.auth().currentUser
+            currentUser: firebase.auth().currentUser,
+            processing: true
         })
         axios.post(`${API}/getdocs`)
         .then((response) => {
             console.log(response.data)
             this.setState({
-                docs: response.data
+                docs: response.data,
+                processing: false
             })
         })
         .catch((err) => {
@@ -50,7 +54,8 @@ class Main extends Component {
         .then((response) => {
             console.log(response)
             this.setState({
-                user: response.data
+                user: response.data,
+                yourdocs: response.data.docs
             })
         })
         .catch((err) => {
@@ -96,6 +101,7 @@ class Main extends Component {
                     </div>
                     <div className="column center">
                     <h2 className="posts">POSTS</h2>
+                    {this.state.processing ? <Spin /> : <div></div>}
                     {this.state.docs.map((item, index) => {
                         return (
                             <div className="">
@@ -110,13 +116,26 @@ class Main extends Component {
                     </div>
                     <div className="column left">
                         <h2 className="posts">DEVS</h2>
-                        {this.state.devs.map((item, index) => {
+                        {this.state.processing ? <Spin /> : <div></div>}
+                        {this.state.devs.slice(0, 8).map((item, index) => {
                             return (
                                 <div className="pt-2" style={{listStyleType: "none"}}> 
                                 <li className="font-weight-bold">{item.name}</li> 
                                 </div>
                             )
-                            })}          
+                        })} 
+                        <div className="pt-5">
+                        <h2 className="posts">YOUR DOCS</h2>
+                        {this.state.processing ? <Spin /> : <div></div>}
+                        {this.state.yourdocs.map((item, index) => {
+                            return (
+                                <div className="pt-2">
+                                    <p>{item.title}</p>
+                                    <p className="font-weight-bold"><NavLink className="text-dark" to={"/doc/" + item.dockey}>👻 READ</NavLink></p>
+                                </div>
+                            )
+                        })}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -158,3 +158,35 @@
         margin-top: 10px;
     }
 }
+
+.comment-input {
+    background-color: #ffffff;
+    padding: 8px;
+    border-color: #000000;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+.comment-btn {
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-color: #000000;
+    background-color: #000000;
+    color: #ffffff;
+    padding: 8px;
+}
+
+.post-btn {
+    border-radius: 2px;
+    border: none;
+    background-color: #000000;
+    color: #ffffff;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}

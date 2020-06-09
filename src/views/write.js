@@ -71,6 +71,13 @@ class Write extends Component {
                 posting: false,
                 posted: true
             })
+            axios.put(`${API}/edituser`, {
+                userkey: this.state.userkey,
+                docs: [{
+                    title: this.state.title,
+                    dockey: response.data.dockey
+                }]
+            }).then(() => {console.log("Done!")})
         })
         .catch((err) => {
             console.log(err)
@@ -90,6 +97,7 @@ class Write extends Component {
     render(){
         return (
             <div className="write">
+                <h5><NavLink className="text-dark" to="/">❌ BACK</NavLink></h5>
                 {this.state.posting ? <Spin /> : <div></div>}
                 {this.state.posted ? <div>
                     <Result
@@ -98,19 +106,18 @@ class Write extends Component {
                         subTitle="Quick Tip: Keep an eye on your posts and engage with people in the comments."
                     />
                 </div> : <div></div>}
-              <h5><NavLink to="/">❌</NavLink></h5>
                 <TextArea id="title" onChange={this.onChange} style={{fontSize: 20, fontWeight: "bold"}} placeholder="Title Goes Here!" />
                 <div style={{ margin: '24px 0' }} />
+                <p>Use markdown to write interactive and more readable docs. You can customize headings, paragraphs, sub-headings and much more with it. Read <NavLink to="/">this post</NavLink> to know about markdown and how to use it.</p>
                 <TextArea
                 id="body"
                 onChange={this.onChange}
                 placeholder="What you are upto today?"
                 autoSize={{ minRows: 10, maxRows: 50 }}
                 />
-
                 <form className="pt-4">
                 {this.state.isUploading && <div className="text-center"><Spin /></div>}
-                <FileUploader
+                <FileUploader 
                     accept="image/*"
                     name="avatar"
                     randomizeFilename
@@ -121,7 +128,8 @@ class Write extends Component {
                     onProgress={this.handleProgress}
                 />
                 </form>
-                <button className="mt-3" onClick={this.handlePost}>POST</button>
+                <p>*you can't post without adding an image (a picture is worth a thousand words).</p>
+                <button className="mt-3 post-btn" onClick={this.handlePost}>POST</button>
             </div>
         )
     }
