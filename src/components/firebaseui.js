@@ -94,8 +94,11 @@ class SignInScreen extends React.Component {
   }
 
   bioSubmit = (e) => {
+    const headers = {
+      'Content-Type': 'application/json'
+    };
     e.preventDefault()
-    axios.put(`${API}/edituser`, this.state)
+    axios.put(`${API}/edituser`, this.state, {headers})
     .then((response) => {
       console.log(response)
       this.bioSaved()

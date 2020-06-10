@@ -47,7 +47,7 @@ class User extends React.Component {
                     <h2 className="user-name">{this.state.dev.name}</h2>
                     <h5 className="user-content pt-3">🔥 {this.state.dev.upvote} UPVOTEs</h5>
                     <h5 className="user-content">{this.state.dev.bio}</h5>
-                    <i className="fa fa-instagram"></i>
+                    <a className="text-dark" href={"https://instagram.com" + this.state.dev.instagram}><i className="text-dark fa fa-instagram"></i></a>
                     {this.state.docs.map((item, index) => {
                         console.log(item)
                         return (
