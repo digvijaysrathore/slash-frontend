@@ -11,6 +11,7 @@ import { Spin } from 'antd';
 import Write from './views/write';
 import Doc from './views/doc';
 import User from './views/user';
+import UserId from "./views/userid";
 
 const config = {
   apiKey: process.env.REACT_APP_APIKEY,
@@ -63,6 +64,7 @@ class App extends Component {
           <Route path="/write" component={Write} />
           <Route path="/doc/:doc" component={Doc} />
           <Route path="/dev/:email" component={User} />
+          <Route path="/developer/:id" component={UserId} />
         </BrowserRouter>
       </div>
       :
