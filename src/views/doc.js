@@ -74,7 +74,7 @@ class Doc extends Component {
                 <NavLink to="/"><p>⬅️ BROWSE</p></NavLink>
                 {this.state.processing ? <Spin /> : <div></div>}
                 <h1 className="doc-title">{this.state.doc.title}</h1>
-                <NavLink to={"/deve/" + this.state.doc.userkey}><h5>{this.state.doc.developer}</h5></NavLink>
+                <NavLink to={"/developer/" + this.state.doc.userkey}><h5>{this.state.doc.developer}</h5></NavLink>
                 <div className="text-center">
                     <img src={this.state.doc.image} className="doc-image" alt="" />
                 </div>
