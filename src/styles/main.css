@@ -4,6 +4,16 @@
     width: 100px;
 }
 
+.btn-dark {
+    border-radius: 2px;
+    background-color: #000000;
+}
+
+.btn-upvote {
+    margin-left: 10px;
+    color: #ffffff;
+}
+
 .main {
     background-color: #ffffff;
     padding-left: 37px;

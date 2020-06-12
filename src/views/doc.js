@@ -18,11 +18,20 @@ class Doc extends Component {
             name: "",
             processing: false,
             commenting: false,
-            fetched: false
+            fetched: false,
+            isSignedIn: false
         }
     }
 
     componentDidMount = () => {
+        if(firebase.auth().currentUser === null){
+            console.log("No User!")
+        } else {
+            this.setState({
+                isSignedIn: true
+            })
+        }
+
         this.setState({
             processing: true
         })
@@ -80,11 +89,17 @@ class Doc extends Component {
                 </div>
                 {this.state.fetched ? <Body text={this.state.doc.body}/> : <div></div>}
                 <h2 className="posts pt-4">COMMENTS</h2>
+                {this.state.isSignedIn ?
                 <form onSubmit={this.onComment}>
                     <input id="comment" className="comment-input" onChange={this.onCommentChange} type="text" placeholder="Your comment goes here!"/>
                     <button className="comment-btn" type="submit">POST</button>
                     {this.state.commenting ? <Spin /> : <div></div>}
                 </form>
+                :
+                <div>
+                    <p>Please Log In to write a comment, <NavLink to="/">head to.</NavLink></p>
+                </div>
+                }
                 <div className="pt-4">
                     {this.state.comments.map((item, index) => {
                         return (

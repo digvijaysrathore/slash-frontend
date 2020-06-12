@@ -5,7 +5,6 @@ import "./styles/main.css";
 import firebase from 'firebase';
 import NavbarComponent from './layout/navbar';
 import axios from "axios";
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import {API} from "./backend";
 import { Spin } from 'antd';
 import Write from './views/write';
@@ -24,7 +23,7 @@ class App extends Component {
     user: ""
   };
 
-  componentWillMount() {
+  componentDidMount() {
     this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
         (user) => this.setState({isSignedIn: !!user, user: user}, console.log(user))
     );
@@ -56,7 +55,6 @@ class App extends Component {
   render(){
     return (
       <div>
-        {this.state.isSignedIn ? 
       <div>
         <BrowserRouter>
           <NavbarComponent />
@@ -67,13 +65,6 @@ class App extends Component {
           <Route path="/developer/:id" component={UserId} />
         </BrowserRouter>
       </div>
-      :
-      <div className="text-center">
-        {/* <img src="https://firebasestorage.googleapis.com/v0/b/slash-co.appspot.com/o/undraw_coding_6mjf%20(1).png?alt=media&token=166c4c20-dd99-420c-8a4e-f3fec4296da1" className="main-image" alt="" /> */}
-        <Spin />
-        <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/>
-      </div>
-    }
       </div>
     )
   }

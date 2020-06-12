@@ -28,6 +28,10 @@ class Write extends Component {
       };
 
       componentDidMount = () => {
+        if(firebase.auth().currentUser === null){
+            window.location.replace("/")
+        }
+        
         const user = firebase.auth().currentUser
         this.setState({
             developer: user.displayName,
