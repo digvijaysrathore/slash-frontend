@@ -1,0 +1,47 @@
+.write-btn {
+    border: none;
+    border-radius: 15px;
+    margin-right: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #f9ff21;
+    color: #000000;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #ffff23, #e0e61e);
+    box-shadow:  20px 20px 60px #d9d9d9, 
+             -20px -20px 60px #ffffff;
+}
+
+.out-btn {
+    border: none;
+    margin-left: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    box-shadow:  20px 20px 60px #d9d9d9, 
+             -20px -20px 60px #ffffff;
+}
+
+.profile-image {
+    border-radius: 15px;
+}
+
+.card {
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    box-shadow:  10px 10px 12px #d9d9d9, 
+             -3px -3px 15px #d9d9d9;
+}
+
+.card-img-top {
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}

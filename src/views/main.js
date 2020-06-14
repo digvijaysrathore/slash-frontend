@@ -123,8 +123,9 @@ class Main extends Component {
                     ?
                     <div className="column right">
                         <img className="profile-image" src={firebase.auth().currentUser.photoURL} />
-                        <h5 className="pt-3">👋 Hi, {firebase.auth().currentUser.displayName}! ({firebase.auth().currentUser.email} ✉️)</h5>
+                        <h5 className="pt-3 user-name">👋 Hi, {firebase.auth().currentUser.displayName}!</h5>
                         <p>You got <span className="font-weight-bold">{this.state.user.upvote} upvotes</span> 😀 by some awesome devs.</p>
+                        <p>Check your <NavLink to={"/developer/" + firebase.auth().currentUser.uid}>Profile</NavLink></p>
                         <div className="pt-3">
                         <button className="write-btn"><NavLink className="text-dark" to="/write">Write 🖊️</NavLink></button>
                         <button className="out-btn" onClick={() => firebase.auth().signOut()}>Log Out 😱</button>
@@ -139,7 +140,7 @@ class Main extends Component {
                     :
                     <div className="column right">
                         <img className="profile-image" src={this.state.currentUser.photoURL} />
-                        <h5 className="pt-3">👋 Hi, You must log in!</h5>
+                        <h5 className="pt-3 user-name">👋 Hi, You must log in!</h5>
                         <p>Upon logging in members are allowed to <span className="font-weight-bold">write posts, get upvotes, comment, maintain a profile</span> 😀 and much much more.</p>
                         <div className="pt-3">
                             <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/>
@@ -179,18 +180,6 @@ class Main extends Component {
                                 </div>
                             )
                         })} 
-                        <div className="pt-5">
-                        <h2 className="posts">YOUR DOCS</h2>
-                        {this.state.processing ? <Spin /> : <div></div>}
-                        {this.state.yourdocs.map((item, index) => {
-                            return (
-                                <div className="pt-2">
-                                    <p>{item.title}</p>
-                                    <p className="font-weight-bold"><NavLink className="text-dark" to={"/doc/" + item.dockey}>👻 READ</NavLink></p>
-                                </div>
-                            )
-                        })}
-                        </div>
                     </div>
                 </div>
             </div>

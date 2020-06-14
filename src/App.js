@@ -11,6 +11,8 @@ import Write from './views/write';
 import Doc from './views/doc';
 import User from './views/user';
 import UserId from "./views/userid";
+import "./styles/text.css";
+import "./styles/neu.css";
 
 const config = {
   apiKey: process.env.REACT_APP_APIKEY,
@@ -55,7 +57,7 @@ class App extends Component {
   render(){
     return (
       <div>
-      <div>
+      <div className="app">
         <BrowserRouter>
           <NavbarComponent />
           <Route user={this.state.user} path="/" exact component={Main} />

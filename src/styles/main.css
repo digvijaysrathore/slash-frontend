@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:wght@600&family=Source+Code+Pro&display=swap');
 
+.app {
+    background-color: #dde1e7;
+}
+
+body {
+    background-color: #dde1e7;
+    font-family: 'Montserrat', sans-serif;
+}
+
 .main-img {
     width: 100px;
 }
@@ -15,7 +24,6 @@
 }
 
 .main {
-    background-color: #ffffff;
     padding-left: 37px;
     padding-right: 37px;
     padding-top: 50px;
@@ -65,7 +73,7 @@
 }
 
 .write {
-    background-color: #ffffff;
+    background-color: #dde1e7;
     padding-left: 150px;
     padding-right: 150px;
     padding-top: 50px;
@@ -90,24 +98,6 @@
     }
 }
 
-.write-btn {
-    border-width: 2px;
-    border-radius: 2px;
-    border-color: #000000;
-    margin-right: 10px;
-    padding: 7px;
-    background-color: #f9ff21;
-    color: #000000;
-}
-
-.out-btn {
-    border-width: 2px;
-    border-radius: 2px;
-    border-color: #000000;
-    margin-left: 10px;
-    padding: 7px;
-}
-
 .account-signedin {
     font-family: 'Source Code Pro', monospace;
 }
@@ -125,7 +115,7 @@
 }
 
 .navbar {
-    background-color: #ffffff;
+    background-color: #dde1e7;
     padding-top: 10px;
     padding-left: 150px;
     padding-right: 150px;
